@@ -20,7 +20,7 @@ public class Lancamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer codigoLancamento;
-    @Column(name = "dt_vencimento")
+    @Column(name = "codigo_aplicacao")
     private Integer codigoAplicacao;
     @Column(name = "tipo_lancamento")
     private TipoLancamentoEnum tipoLancamento;

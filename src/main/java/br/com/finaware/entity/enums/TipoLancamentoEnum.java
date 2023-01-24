@@ -6,7 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TipoLancamentoEnum {
     APLICACAO("A", "Aplicação"),
-    RESGATE("R", "Resgate");
+    RESGATE("R", "Resgate"),
+    IRF("IRF", "Imposto de Renda"),
+    IOF("IOF", "Imposto sobre Operações Financeiras");
 
     @Getter
     private String codigo;

@@ -39,10 +39,6 @@ public class Aplicacao {
     private LocalDate dataAplicacao;
     @Column(name = "dt_liquidacao")
     private LocalDate dataLiquidacao;
-    @Column(name = "prazo_vencimento")
-    private Integer prazoVencimento;
-    @Column(name = "prazo_carencia")
-    private Integer prazoCarencia;
     @Column(name = "iof")
     private BigDecimal iof;
     @Column(name = "irf")
