@@ -19,6 +19,7 @@ o [Docker](https://www.docker.com/products/docker-desktop/) para subir o banco d
   <li>JPA</li>
   <li>Hibernate</li>
   <li>Lombok</li>
+  <li>Swagger</li>
   </ul>
   
   <h3>Endpoints:</h3>  
