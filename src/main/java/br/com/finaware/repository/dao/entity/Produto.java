@@ -1,6 +1,6 @@
-package br.com.finaware.entity;
+package br.com.finaware.repository.dao.entity;
 
-import br.com.finaware.entity.enums.TipoProdutoEnum;
+import br.com.finaware.repository.dao.entity.enums.TipoProdutoEnum;
 import lombok.*;
 
 import javax.persistence.*;

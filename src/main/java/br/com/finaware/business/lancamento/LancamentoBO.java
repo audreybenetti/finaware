@@ -1,10 +1,7 @@
 package br.com.finaware.business.lancamento;
 
-import br.com.finaware.entity.enums.TipoLancamentoEnum;
-import br.com.finaware.entity.enums.TipoProdutoEnum;
 import lombok.*;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

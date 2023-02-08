@@ -1,4 +1,4 @@
-package br.com.finaware.api;
+package br.com.finaware.api.produto;
 
 import br.com.finaware.api.DTO.ProdutoInputDTO;
 import br.com.finaware.api.DTO.ProdutoOutputDTO;

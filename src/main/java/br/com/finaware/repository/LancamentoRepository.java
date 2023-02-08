@@ -2,9 +2,9 @@ package br.com.finaware.repository;
 
 import br.com.finaware.api.DTO.LancamentoInputDTO;
 import br.com.finaware.business.lancamento.LancamentoBO;
-import br.com.finaware.dao.LancamentoDAO;
-import br.com.finaware.entity.Lancamento;
-import br.com.finaware.entity.enums.TipoLancamentoEnum;
+import br.com.finaware.repository.dao.LancamentoDAO;
+import br.com.finaware.repository.dao.entity.Lancamento;
+import br.com.finaware.repository.dao.entity.enums.TipoLancamentoEnum;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
@@ -21,8 +21,17 @@ public class LancamentoRepository {
     private final ModelMapper modelMapper = new ModelMapper();
 
     public LancamentoBO save(LancamentoInputDTO input){
-        Lancamento produto = modelMapper.map(input, Lancamento.class);
-        return modelMapper.map(lancamentoDAO.save(produto), LancamentoBO.class);
+        Lancamento lancamento = buildLancamento(input);
+        return modelMapper.map(lancamentoDAO.save(lancamento), LancamentoBO.class);
+    }
+
+    private Lancamento buildLancamento(LancamentoInputDTO inputDTO){
+        return Lancamento.builder()
+                .codigoAplicacao(inputDTO.getCodigoAplicacao())
+                .tipoLancamento(modelMapper.map(inputDTO.getTipoLancamento(), TipoLancamentoEnum.class))
+                .dataLancamento(inputDTO.getDataLancamento())
+                .valorLancamento(inputDTO.getValorLancamento())
+                .build();
     }
 
     public LancamentoBO findById(Integer id){

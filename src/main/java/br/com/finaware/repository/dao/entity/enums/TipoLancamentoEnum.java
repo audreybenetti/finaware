@@ -1,4 +1,4 @@
-package br.com.finaware.entity.enums;
+package br.com.finaware.repository.dao.entity.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,5 @@
 package br.com.finaware.api.DTO;
 
-import br.com.finaware.entity.enums.TipoLancamentoEnum;
-import br.com.finaware.entity.enums.TipoProdutoEnum;
 import lombok.*;
 
 import java.math.BigDecimal;

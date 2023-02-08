@@ -2,9 +2,9 @@ package br.com.finaware.repository;
 
 import br.com.finaware.api.DTO.ProdutoInputDTO;
 import br.com.finaware.business.produto.ProdutoBO;
-import br.com.finaware.dao.ProdutoDAO;
-import br.com.finaware.entity.Produto;
-import br.com.finaware.entity.enums.TipoProdutoEnum;
+import br.com.finaware.repository.dao.ProdutoDAO;
+import br.com.finaware.repository.dao.entity.Produto;
+import br.com.finaware.repository.dao.entity.enums.TipoProdutoEnum;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
