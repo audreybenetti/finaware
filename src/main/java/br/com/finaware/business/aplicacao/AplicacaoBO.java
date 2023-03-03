@@ -1,5 +1,6 @@
 package br.com.finaware.business.aplicacao;
 
+import br.com.finaware.business.aplicacao.enums.ProdutoSituacaoEnumBO;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class AplicacaoBO {
     private Double rentabilidade;
     private BigDecimal valorAplicado;
     private BigDecimal valorResgatado;
+    private BigDecimal valorComRendimento;
     private LocalDate dataAplicacao;
     private LocalDate dataLiquidacao;
     private BigDecimal iof;

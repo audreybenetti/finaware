@@ -1,4 +1,4 @@
-package br.com.finaware.business.lancamento;
+package br.com.finaware.business.lancamento.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

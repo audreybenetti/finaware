@@ -1,5 +1,6 @@
 package br.com.finaware.business.lancamento;
 
+import br.com.finaware.business.lancamento.enums.TipoLancamentoBOEnum;
 import lombok.*;
 
 import java.math.BigDecimal;

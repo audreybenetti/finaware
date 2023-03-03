@@ -5,6 +5,8 @@ import br.com.finaware.repository.AplicacaoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,7 +20,9 @@ public class AplicacaoService {
     }
 
     public AplicacaoBO buscarAplicacao(Integer id){
-        return aplicacaoRepository.findById(id);
+        AplicacaoBO aplicacaoBO = aplicacaoRepository.findById(id);
+        aplicacaoBO.setValorComRendimento(valorRendimentos(aplicacaoBO));
+        return aplicacaoBO;
     }
 
     public AplicacaoBO atualizarAplicacao(Integer id, AplicacaoInputDTO input){
@@ -31,5 +35,10 @@ public class AplicacaoService {
 
     public List<AplicacaoBO> listarAplicacoes(){
         return aplicacaoRepository.listaAplicacoes();
+    }
+
+    private BigDecimal valorRendimentos(AplicacaoBO aplicacao){
+        long meses = ChronoUnit.MONTHS.between(aplicacao.getDataAplicacao(), aplicacao.getDataLiquidacao());
+        return aplicacao.getValorAplicado().multiply((BigDecimal.valueOf(1L).add(BigDecimal.valueOf(aplicacao.getRentabilidade())).multiply(BigDecimal.valueOf(meses))));
     }
 }

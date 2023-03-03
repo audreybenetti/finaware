@@ -26,7 +26,7 @@ public class LancamentoRest {
         return ResponseEntity.ok(modelMapper.map(lancamentoService.criarLancamento(lancamentoInputDTO), LancamentoOutputDTO.class));
     }
 
-    //inserir query parameter
+    //TODO inserir query parameter
     @ApiOperation(value = "Lista todos os lançamentos cadastrados.")
     @GetMapping
     public ResponseEntity<List<LancamentoOutputDTO>> listarLancamentos(){
@@ -36,21 +36,21 @@ public class LancamentoRest {
     }
 
     @ApiOperation(value = "Busca lançamento cadastrado por identificador.")
-    @GetMapping("/{produto}")
-    public ResponseEntity<LancamentoOutputDTO> buscarLancamento(@PathVariable("produto") Integer id){
+    @GetMapping("/{lancamento}")
+    public ResponseEntity<LancamentoOutputDTO> buscarLancamento(@PathVariable("lancamento") Integer id){
         return ResponseEntity.ok(modelMapper.map(lancamentoService.buscarLancamento(id), LancamentoOutputDTO.class));
     }
 
     @ApiOperation(value = "Atualiza lançamento existente.")
-    @PutMapping("/{produto}")
-    public ResponseEntity<LancamentoOutputDTO> atualizarLancamento(@PathVariable("produto") Integer id,
+    @PutMapping("/{lancamento}")
+    public ResponseEntity<LancamentoOutputDTO> atualizarLancamento(@PathVariable("lancamento") Integer id,
                                                              @RequestBody LancamentoInputDTO lancamentoInputDTO){
         return ResponseEntity.ok(modelMapper.map(lancamentoService.atualizarLancamento(id, lancamentoInputDTO), LancamentoOutputDTO.class));
     }
 
     @ApiOperation(value = "Deleta lançamento por identificador.")
-    @DeleteMapping("/{produto}")
-    public ResponseEntity<Void> deletarLancamento(@PathVariable("produto") Integer id){
+    @DeleteMapping("/{lancamento}")
+    public ResponseEntity<Void> deletarLancamento(@PathVariable("lancamento") Integer id){
         lancamentoService.deletarLancamento(id);
         return ResponseEntity.ok().build();
     }
