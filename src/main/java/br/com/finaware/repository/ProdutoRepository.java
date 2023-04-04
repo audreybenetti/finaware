@@ -26,25 +26,24 @@ public class ProdutoRepository {
     }
 
     public ProdutoBO findById(Integer id){
-        if(existsById(id)){
-            return modelMapper.map(produtoDAO.findById(id), ProdutoBO.class);
-        } else throw new NoSuchElementException("Produto " + id + " não encontrado.");
+        existsById(id);
+        return modelMapper.map(produtoDAO.findById(id), ProdutoBO.class);
     }
 
     public ProdutoBO updateProduto(Integer id, ProdutoInputDTO produtoInputDTO) {
-        if(existsById(id)){
-            return modelMapper.map(produtoDAO.save((toProdutoAtualizado(id, produtoInputDTO))), ProdutoBO.class);
-        } else throw new NoSuchElementException("Produto " + id + " não encontrado.");
+        existsById(id);
+        return modelMapper.map(produtoDAO.save((toProdutoAtualizado(id, produtoInputDTO))), ProdutoBO.class);
     }
 
     public void deleteProduto(Integer id) {
-        if(existsById(id)) {
-            produtoDAO.deleteById(id);
-        } else throw new NoSuchElementException("Produto " + id + " não encontrado.");
+        existsById(id);
+        produtoDAO.deleteById(id);
     }
 
-    private boolean existsById(Integer id){
-        return produtoDAO.existsById(id);
+    private void existsById(Integer id){
+        if(!produtoDAO.existsById(id)){
+            throw new NoSuchElementException("Produto " + id + " não encontrado.");
+        }
     }
 
     public List<ProdutoBO> listaProdutos() {
