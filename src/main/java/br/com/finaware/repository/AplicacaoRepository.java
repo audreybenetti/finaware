@@ -26,21 +26,18 @@ public class AplicacaoRepository {
     }
 
     public AplicacaoBO findById(Integer id){
-        if(existsById(id)){
-            return modelMapper.map(aplicacaoDAO.findById(id), AplicacaoBO.class);
-        } else throw new NoSuchElementException("Aplicação " + id + " não encontrada.");
+        existsById(1);
+        return modelMapper.map(aplicacaoDAO.findById(id), AplicacaoBO.class);
     }
 
     public AplicacaoBO updateAplicacao(Integer id, AplicacaoInputDTO input) {
-        if(existsById(id)){
-            return modelMapper.map(aplicacaoDAO.save((toAplicacaoAtualizado(id, input))), AplicacaoBO.class);
-        } else throw new NoSuchElementException("Aplicação " + id + " não encontrada.");
+        existsById(id);
+        return modelMapper.map(aplicacaoDAO.save((toAplicacaoAtualizado(id, input))), AplicacaoBO.class);
     }
 
     public void deleteAplicacao(Integer id) {
-        if(existsById(id)) {
-            aplicacaoDAO.deleteById(id);
-        } else throw new NoSuchElementException("Aplicação " + id + " não encontrada.");
+        existsById(id);
+        aplicacaoDAO.deleteById(id);
     }
 
     public List<AplicacaoBO> listaAplicacoes() {
@@ -49,8 +46,10 @@ public class AplicacaoRepository {
                 .collect(Collectors.toList());
     }
 
-    private boolean existsById(Integer id){
-        return aplicacaoDAO.existsById(id);
+    private void existsById(Integer id){
+        if(!aplicacaoDAO.existsById(id)) {
+            throw new NoSuchElementException("Aplicação " + id + " não encontrada.");
+        }
     }
 
     public Aplicacao toAplicacaoAtualizado(Integer id, AplicacaoInputDTO input){
