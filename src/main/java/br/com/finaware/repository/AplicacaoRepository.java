@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -26,7 +26,7 @@ public class AplicacaoRepository {
     }
 
     public AplicacaoBO findById(Integer id){
-        existsById(1);
+        existsById(id);
         return modelMapper.map(aplicacaoDAO.findById(id), AplicacaoBO.class);
     }
 
@@ -48,7 +48,7 @@ public class AplicacaoRepository {
 
     private void existsById(Integer id){
         if(!aplicacaoDAO.existsById(id)) {
-            throw new NoSuchElementException("Aplicação " + id + " não encontrada.");
+            throw new EntityNotFoundException("Aplicação " + id + " não encontrada.");
         }
     }
 

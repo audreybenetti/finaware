@@ -14,11 +14,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
+import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,7 +56,7 @@ public class AplicacaoRepositoryTest {
         Assert.assertEquals(result, aplicacaoBO);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveBuscarAplicacaoPorIdErroNotFound(){
         when(aplicacaoDAO.existsById(1)).thenReturn(false);
         aplicacaoRepository.findById(1);
@@ -74,7 +74,7 @@ public class AplicacaoRepositoryTest {
         Assert.assertEquals(result, aplicacaoBO);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveAlterarAplicacaoErroNotFound(){
         when(aplicacaoDAO.existsById(1)).thenReturn(false);
         aplicacaoRepository.updateAplicacao(1, buildAplicacaoInput());
@@ -87,7 +87,7 @@ public class AplicacaoRepositoryTest {
         verify(aplicacaoDAO).deleteById(1);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveDeletarAplicacaoErroNotFound(){
         when(aplicacaoDAO.existsById(1)).thenReturn(false);
         aplicacaoRepository.deleteAplicacao(1);

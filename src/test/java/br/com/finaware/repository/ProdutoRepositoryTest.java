@@ -14,9 +14,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -54,7 +54,7 @@ public class ProdutoRepositoryTest {
         Assert.assertEquals(result, produtoBO);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveBuscarProdutoPorIdErroNotFound(){
         when(produtoDAO.existsById(1)).thenReturn(false);
         produtoRepository.findById(1);
@@ -72,7 +72,7 @@ public class ProdutoRepositoryTest {
         Assert.assertEquals(result, produtoBO);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveAlterarAplicacaoErroNotFound(){
         when(produtoDAO.existsById(1)).thenReturn(false);
         produtoRepository.updateProduto(1, buildProdutoDTO());
@@ -85,7 +85,7 @@ public class ProdutoRepositoryTest {
         verify(produtoDAO).deleteById(1);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveDeletarAplicacaoErroNotFound(){
         when(produtoDAO.existsById(1)).thenReturn(false);
         produtoRepository.deleteProduto(1);

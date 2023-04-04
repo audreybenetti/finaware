@@ -14,11 +14,11 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
+import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -56,7 +56,7 @@ public class LancamentoRepositoryTest {
         Assert.assertEquals(result, lancamentoBO);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveBuscarLancamentoPorIdErroNotFound(){
         when(lancamentoDAO.existsById(1)).thenReturn(false);
         lancamentoRepository.findById(1);
@@ -74,7 +74,7 @@ public class LancamentoRepositoryTest {
         Assert.assertEquals(result, lancamentoBO);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveAlterarAplicacaoErroNotFound(){
         when(lancamentoDAO.existsById(1)).thenReturn(false);
         lancamentoRepository.updateLancamento(1, buildLancamentoDTO());
@@ -87,7 +87,7 @@ public class LancamentoRepositoryTest {
         verify(lancamentoDAO).deleteById(1);
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = EntityNotFoundException.class)
     public void deveDeletarAplicacaoErroNotFound(){
         when(lancamentoDAO.existsById(1)).thenReturn(false);
         lancamentoRepository.deleteLancamento(1);

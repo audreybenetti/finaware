@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -42,7 +42,7 @@ public class ProdutoRepository {
 
     private void existsById(Integer id){
         if(!produtoDAO.existsById(id)){
-            throw new NoSuchElementException("Produto " + id + " não encontrado.");
+            throw new EntityNotFoundException("Produto " + id + " não encontrado.");
         }
     }
 
