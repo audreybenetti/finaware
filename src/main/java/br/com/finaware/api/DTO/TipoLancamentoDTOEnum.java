@@ -5,13 +5,13 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public enum TipoLancamentoDTOEnum {
-    APLICACAO("A", "Aplicação"),
-    RESGATE("R", "Resgate"),
-    IRF("IRF", "Imposto de Renda"),
-    IOF("IOF", "Imposto sobre Operações Financeiras");
+    APLICACAO(1, "Aplicação"),
+    RESGATE(2, "Resgate"),
+    IRF(3, "Imposto de Renda"),
+    IOF(4, "Imposto sobre Operações Financeiras");
 
     @Getter
-    private String codigo;
+    private Integer codigo;
     @Getter
     private String descricao;
 }

@@ -21,39 +21,29 @@ public class LancamentoRepository {
     private final ModelMapper modelMapper = new ModelMapper();
 
     public LancamentoBO save(LancamentoInputDTO input){
-        Lancamento lancamento = buildLancamento(input);
+        Lancamento lancamento = modelMapper.map(input, Lancamento.class);
         return modelMapper.map(lancamentoDAO.save(lancamento), LancamentoBO.class);
     }
 
-    private Lancamento buildLancamento(LancamentoInputDTO inputDTO){
-        return Lancamento.builder()
-                .codigoAplicacao(inputDTO.getCodigoAplicacao())
-                .tipoLancamento(modelMapper.map(inputDTO.getTipoLancamento(), TipoLancamentoEnum.class))
-                .dataLancamento(inputDTO.getDataLancamento())
-                .valorLancamento(inputDTO.getValorLancamento())
-                .build();
-    }
-
     public LancamentoBO findById(Integer id){
-        if(existsById(id)){
-            return modelMapper.map(lancamentoDAO.findById(id), LancamentoBO.class);
-        } else throw new NoSuchElementException("Lancamento " + id + " não encontrado.");
+        existsById(id);
+        return modelMapper.map(lancamentoDAO.findById(id), LancamentoBO.class);
     }
 
     public LancamentoBO updateLancamento(Integer id, LancamentoInputDTO input) {
-        if(existsById(id)){
-            return modelMapper.map(lancamentoDAO.save((toLancamentoAtualizado(id, input))), LancamentoBO.class);
-        } else throw new NoSuchElementException("Lancamento " + id + " não encontrado.");
+        existsById(id);
+        return modelMapper.map(lancamentoDAO.save((toLancamentoAtualizado(id, input))), LancamentoBO.class);
     }
 
     public void deleteLancamento(Integer id) {
-        if(existsById(id)) {
-            lancamentoDAO.deleteById(id);
-        } else throw new NoSuchElementException("Lancamento " + id + " não encontrado.");
+        existsById(id);
+        lancamentoDAO.deleteById(id);
     }
 
-    private boolean existsById(Integer id){
-        return lancamentoDAO.existsById(id);
+    private void existsById(Integer id){
+        if(!lancamentoDAO.existsById(id)){
+            throw new NoSuchElementException("Lancamento " + id + " não encontrado.");
+        }
     }
 
     public List<LancamentoBO> listaLancamentos() {
